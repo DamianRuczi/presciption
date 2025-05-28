@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace prescription_add_ep.Migrations
 {
     /// <inheritdoc />
-    public partial class Addtablesaddrelations : Migration
+    public partial class Addtablesandsampledata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -108,6 +110,33 @@ namespace prescription_add_ep.Migrations
                         principalTable: "Prescription",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Doctor",
+                columns: new[] { "DoctorId", "Email", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 1, "email@emial.com", "John", "Doe" },
+                    { 2, "email@emial.com", "Jane", "Doe" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Medicament",
+                columns: new[] { "MedicamentId", "Description", "Name", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Pain reliever", "Aspirin", "Tablet" },
+                    { 2, "Anti-inflammatory", "Ibuprofen", "Tablet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Patient",
+                columns: new[] { "PatientId", "DateOfBirth", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alice", "Smith" },
+                    { 2, new DateTime(1985, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bob", "Johnson" }
                 });
 
             migrationBuilder.CreateIndex(

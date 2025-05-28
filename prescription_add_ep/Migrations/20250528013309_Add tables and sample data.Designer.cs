@@ -12,8 +12,8 @@ using prescription_add_ep.Data;
 namespace prescription_add_ep.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250527163125_Add tables add relations")]
-    partial class Addtablesaddrelations
+    [Migration("20250528013309_Add tables and sample data")]
+    partial class Addtablesandsampledata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,22 @@ namespace prescription_add_ep.Migrations
                     b.HasKey("DoctorId");
 
                     b.ToTable("Doctor");
+
+                    b.HasData(
+                        new
+                        {
+                            DoctorId = 1,
+                            Email = "email@emial.com",
+                            FirstName = "John",
+                            LastName = "Doe"
+                        },
+                        new
+                        {
+                            DoctorId = 2,
+                            Email = "email@emial.com",
+                            FirstName = "Jane",
+                            LastName = "Doe"
+                        });
                 });
 
             modelBuilder.Entity("prescription_add_ep.Models.Medicament", b =>
@@ -79,6 +95,22 @@ namespace prescription_add_ep.Migrations
                     b.HasKey("MedicamentId");
 
                     b.ToTable("Medicament");
+
+                    b.HasData(
+                        new
+                        {
+                            MedicamentId = 1,
+                            Description = "Pain reliever",
+                            Name = "Aspirin",
+                            Type = "Tablet"
+                        },
+                        new
+                        {
+                            MedicamentId = 2,
+                            Description = "Anti-inflammatory",
+                            Name = "Ibuprofen",
+                            Type = "Tablet"
+                        });
                 });
 
             modelBuilder.Entity("prescription_add_ep.Models.Patient", b =>
@@ -103,6 +135,22 @@ namespace prescription_add_ep.Migrations
                     b.HasKey("PatientId");
 
                     b.ToTable("Patient");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientId = 1,
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Alice",
+                            LastName = "Smith"
+                        },
+                        new
+                        {
+                            PatientId = 2,
+                            DateOfBirth = new DateTime(1985, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Bob",
+                            LastName = "Johnson"
+                        });
                 });
 
             modelBuilder.Entity("prescription_add_ep.Models.Prescription", b =>
